@@ -57,15 +57,23 @@ class ParticleFilter {
   void prediction(double delta_t, double std_pos[], double velocity, 
                   double yaw_rate);
   
+  void predictLandmarks(const Particle particle, 
+                        const double sensor_range, 
+                        const Map &map_landmarks,
+                        std::vector<Map::single_landmark_s>& predicted_landmarks);
+
+  void transformObservation(const Particle particle, 
+                            const std::vector<LandmarkObs> &observations,
+                            std::vector<LandmarkObs>& transformed_obs);
+
   /**
    * dataAssociation Finds which observations correspond to which landmarks 
    *   (likely by using a nearest-neighbors data association).
-   * @param predicted Vector of predicted landmark observations
+   * @param predicted Vector of predicted landmark
    * @param observations Vector of landmark observations
    */
-  void dataAssociation(std::vector<LandmarkObs> predicted, 
+  void dataAssociation(std::vector<Map::single_landmark_s> predicted, 
                        std::vector<LandmarkObs>& observations);
-  
   /**
    * updateWeights Updates the weights for each particle based on the likelihood
    *   of the observed measurements. 
@@ -91,9 +99,8 @@ class ParticleFilter {
    * This can be a very useful debugging tool to make sure transformations 
    *   are correct and assocations correctly connected
    */
-  void SetAssociations(Particle& particle, const std::vector<int>& associations,
-                       const std::vector<double>& sense_x, 
-                       const std::vector<double>& sense_y);
+  void SetAssociations(Particle& particle,
+                       const std::vector<LandmarkObs>& transformed_obs);
 
   /**
    * initialized Returns whether particle filter is initialized yet or not.
