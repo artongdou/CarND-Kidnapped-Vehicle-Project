@@ -2,7 +2,7 @@ project(PARTICLE_FILTER)
 
 cmake_minimum_required (VERSION 3.5)
 
-add_definitions(-std=c++11)
+add_definitions(-std=c++17)
 
 set(CXX_FLAGS "-Wall")
 set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
@@ -10,7 +10,7 @@ set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 file(GLOB HEADERS src/*.h)
 file(GLOB HEADERS_HPP src/*.hpp)
 
-set(sources src/particle_filter.cpp src/main.cpp ${HEADERS} ${HEADERS_HPP})
+set(sources src/particle_filter.cpp src/main.cpp src/multiv_gauss.cpp ${HEADERS} ${HEADERS_HPP})
 
 
 
@@ -20,7 +20,7 @@ include_directories(/usr/local/include)
 include_directories(/usr/local/opt/openssl/include)
 link_directories(/usr/local/lib)
 link_directories(/usr/local/opt/openssl/lib)
-link_directories(/usr/local/Cellar/libuv/1*/lib)
+link_directories(/usr/local/Cellar/libuv/1.35.0/lib)
 
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
 
