@@ -3,7 +3,7 @@ This repository contains all the code needed to complete the final project for t
 
 ## Demo
 
-![alt text](./demo/particle_filter_demo_small.gif)
+![Alt Text](https://github.com/artongdou/CarND-Kidnapped-Vehicle-Project/blob/master/demo/particle_filter_demo.gif)
 
 ## Project Introduction
 Your robot has been kidnapped and transported to a new location! Luckily it has a map of this location, a (noisy) GPS estimate of its initial location, and lots of (noisy) sensor and control data.
